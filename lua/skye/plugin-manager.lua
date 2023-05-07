@@ -1,26 +1,35 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-
-	{'nvim-telescope/telescope.nvim',
-	tag = '0.1.1',
-	dependencies = {{'nvim-lua/plenary.nvim'}}	
-},
-{"nvim-treesitter/nvim-treesitter",
-build = ":TSUpdate"
+	{
+	--find stuff
+		'nvim-telescope/telescope.nvim',
+		tag = '0.1.1',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			{
+				'nvim-telescope/telescope-fzf-native.nvim'
+				, build = "make"
+		}
+		}
 	},
 	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate"
+	},
+	{
+	--file tree
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v2.x",
 		dependencies = {
@@ -31,19 +40,41 @@ build = ":TSUpdate"
 
 	},
 	{
-		 "williamboman/mason.nvim",
-    build = ":MasonUpdate" -- :MasonUpdate updates registry contents
+	                     -- lsp package manager
+		"williamboman/mason.nvim",
+		build = ":MasonUpdate" -- :MasonUpdate updates registry contents
 	},
 	{
-		"williamboman/mason-lspconfig.nvim"
+		"williamboman/mason-lspconfig.nvim" -- bridge mason with lsp
 	},
 	{
-		"neovim/nvim-lspconfig"
+		"neovim/nvim-lspconfig" -- base lsp
 	},
 	{
-		"folke/tokyonight.nvim"
-	}
+		"folke/tokyonight.nvim" -- colorscheme
+	},
+	--nvim cmp stuff
+	'hrsh7th/cmp-nvim-lsp',
+	'hrsh7th/cmp-buffer',
+	'hrsh7th/cmp-path',
+	'hrsh7th/cmp-cmdline',
+	'hrsh7th/nvim-cmp',
+	'saadparwaiz1/cmp_luasnip',
+	'L3MON4D3/LuaSnip',
 
+	'tpope/vim-fugitive', -- git related stuff
+
+	'windwp/nvim-autopairs',
+	'nvim-lualine/lualine.nvim',
+	{
+		'nvimdev/lspsaga.nvim',
+		dependencies = {
+			'nvim-tree/nvim-web-devicons',
+			'nvim-treesitter/nvim-treesitter'
+		}
+
+	},
+	'numToStr/Comment.nvim'
 }
 
 require("lazy").setup(plugins)
