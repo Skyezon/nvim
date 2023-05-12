@@ -12,24 +12,24 @@ local servers = {
 	"vimls"
 }
 
-require("mason").setup()
+require('mason').setup()
 require("mason-lspconfig").setup {
 	ensure_installed = servers
 }
 
 require("lspsaga").setup({})
 
-vim.keymap.set('n', '<leader>d',"<cmd>Lspsaga show_line_diagnostics<CR>")
-vim.keymap.set('n', '[d',"<cmd>Lspsaga diagnostic_jump_prev<CR>")
+vim.keymap.set('n', '<leader>d', "<cmd>Lspsaga show_line_diagnostics<CR>")
+vim.keymap.set('n', '[d', "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 vim.keymap.set('n', ']d', "<cmd>Lspsaga diagnostic_jump_next<CR>")
 vim.keymap.set('n', '<leader>D', "<cmd>Lspsaga show_workspace_diagnostics<CR>")
 
 -- Diagnostic jump with filters such as only jumping to an error
 vim.keymap.set("n", "[E", function()
-  require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
+	require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end)
 vim.keymap.set("n", "]E", function()
-  require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
+	require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
 end)
 
 local lspconfig = require("lspconfig")
@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 		vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
 		vim.keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
 		vim.keymap.set('n', 'gd', "<cmd>Lspsaga goto_definition<CR>")
-		vim.keymap.set('n', 'K',"<cmd>Lspsaga hover_doc<CR>")
+		vim.keymap.set('n', 'K', "<cmd>Lspsaga hover_doc<CR>")
 		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
 		vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 		vim.keymap.set({ 'n', 'v' }, '<leader>ca', "<cmd>Lspsaga code_action<CR>")
@@ -63,8 +63,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-
 -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup {

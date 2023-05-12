@@ -9,19 +9,21 @@ if not vim.loop.fs_stat(lazypath) then
 		lazypath,
 	})
 end
+
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
 	{
-	--find stuff
+		--find stuff
 		'nvim-telescope/telescope.nvim',
 		tag = '0.1.1',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			{
 				'nvim-telescope/telescope-fzf-native.nvim'
-				, build = "make"
-		}
+				,
+				build = "make"
+			}
 		}
 	},
 	{
@@ -29,7 +31,7 @@ local plugins = {
 		build = ":TSUpdate"
 	},
 	{
-	--file tree
+		--file tree
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v2.x",
 		dependencies = {
@@ -40,19 +42,14 @@ local plugins = {
 
 	},
 	{
-	                     -- lsp package manager
+		-- lsp package manager
 		"williamboman/mason.nvim",
-		build = ":MasonUpdate" -- :MasonUpdate updates registry contents
+		build = ":MasonUpdate"         -- :MasonUpdate updates registry contents
 	},
-	{
-		"williamboman/mason-lspconfig.nvim" -- bridge mason with lsp
-	},
-	{
-		"neovim/nvim-lspconfig" -- base lsp
-	},
-	{
-		"folke/tokyonight.nvim" -- colorscheme
-	},
+	"williamboman/mason-lspconfig.nvim", -- bridge mason with lsp
+	"neovim/nvim-lspconfig",           -- base lsp
+	"folke/tokyonight.nvim",           -- colorscheme	
+
 	--nvim cmp stuff
 	'hrsh7th/cmp-nvim-lsp',
 	'hrsh7th/cmp-buffer',
@@ -64,17 +61,18 @@ local plugins = {
 
 	'tpope/vim-fugitive', -- git related stuff
 
-	'windwp/nvim-autopairs',
-	'nvim-lualine/lualine.nvim',
+	'windwp/nvim-autopairs', -- autopair brackets like in vscode
+	'nvim-lualine/lualine.nvim', -- better looking status line
 	{
-		'nvimdev/lspsaga.nvim',
+		'nvimdev/lspsaga.nvim', -- better looking lsp stuff
 		dependencies = {
 			'nvim-tree/nvim-web-devicons',
 			'nvim-treesitter/nvim-treesitter'
 		}
 
 	},
-	'numToStr/Comment.nvim'
+	'numToStr/Comment.nvim', -- easier commenting anything
+	'tpope/vim-surround' -- help to surround some text with anything
 }
 
 require("lazy").setup(plugins)
