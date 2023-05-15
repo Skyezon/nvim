@@ -11,7 +11,8 @@ require'nvim-treesitter.configs'.setup {
 	  "lua",
 	  "json",
 	  'markdown',
-	  'markdown_inline'
+	  'markdown_inline',
+	  "php"
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)

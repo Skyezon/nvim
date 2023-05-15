@@ -9,7 +9,9 @@ local servers = {
 	"jdtls",      --java
 	"html",       --html
 	"unocss",     --css
-	"vimls"
+	"vimls",	  --vim
+	"svelte",	  --svelte     
+	"intelephense" --php
 }
 
 require('mason').setup()
