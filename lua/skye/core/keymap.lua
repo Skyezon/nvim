@@ -12,6 +12,8 @@ vim.keymap.set("n", "<leader>tp", ":tabp<CR>")     -- go to previous tab
 
 vim.keymap.set("n", "<leader>ot", "<C-w>s:te<CR>i") -- open terminal below
 
-vim.keymap.set("n", "<leader>e", ":NeoTreeShow<CR>")
+vim.keymap.set("n", "<leader>e", ":NeoTreeShow<CR>") -- show neo tree
 
 vim.keymap.set("i", "<F12>","=") -- becoz my laptop's equal sign is broken lol
+
+vim.keymap.set("n","<leader>u",":UndotreeToggle<CR>") --show undo tree

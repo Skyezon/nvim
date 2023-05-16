@@ -72,7 +72,7 @@ local plugins = {
 
 	},
 	'numToStr/Comment.nvim', -- easier commenting anything
-	'tpope/vim-surround' -- help to surround some text with anything
+	'mbbill/undotree', -- better undo stuff
 }
 
 require("lazy").setup(plugins)
