@@ -1,8 +1,10 @@
 local opt = vim.opt
 opt.tabstop = 4
-opt.smarttab = true
 opt.shiftwidth = 4
+opt.smarttab = true
 opt.autoindent = true
+opt.expandtab = true
+opt.smartindent = true
 
 opt.scrolloff = 8
 opt.relativenumber = true
