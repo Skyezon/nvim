@@ -15,3 +15,9 @@ vim.keymap.set("n", "<leader>ot", "<C-w>s:te<CR>i") -- open terminal below
 vim.keymap.set("n", "<leader>e", ":NeoTreeShow<CR>") -- show neo tree
 
 vim.keymap.set("n","<leader>u",":UndotreeToggle<CR>") --show undo tree
+
+vim.keymap.set("n","<leader>y","\"+y")
+vim.keymap.set("v","<leader>y","\"+y")
+vim.keymap.set("n","<leader>Y","\"+Y")
+
+vim.keymap.set("n","<leader>p","")

@@ -7,6 +7,7 @@ opt.expandtab = true
 opt.smartindent = true
 
 opt.scrolloff = 8
+
 opt.relativenumber = true
 opt.number = true
 
