@@ -11,7 +11,8 @@ local servers = {
 	"unocss",     --css
 	"vimls",	  --vim
 	"svelte",	  --svelte     
-	"intelephense" --php
+	"intelephense", --php
+    "omnisharp" --c#
 }
 
 require('mason').setup()
