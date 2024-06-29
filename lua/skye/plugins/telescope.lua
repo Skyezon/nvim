@@ -26,10 +26,3 @@ require('telescope').setup {
 }
 
 require('telescope').load_extension("fzf")
-
---
-vim.keymap.set('n', '<leader>ff', "<cmd>Telescope find_files<cr>")
-vim.keymap.set('n', '<leader>p', "<cmd>Telescope git_files<cr>")
-vim.keymap.set('n', '<leader>fg', "<cmd>Telescope live_grep<cr>")
-vim.keymap.set('n', '<leader>fs', "<cmd>Telescope grep_string<cr>")
-vim.keymap.set('n', '<leader>fh', "<cmd>Telescope help_tags<cr>")

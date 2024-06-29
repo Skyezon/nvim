@@ -1,5 +1,4 @@
 local servers = {
-
     "lua_ls",        --lua
     "rust_analyzer", --rust
     "eslint",        -- javascript
@@ -12,7 +11,8 @@ local servers = {
     "vimls",         --vim
     "svelte",        --svelte
     "intelephense",  --php
-    "omnisharp"      --c#
+    "omnisharp",      --c#,
+    "clangd", -- c & c++
 }
 
 require('mason').setup()
@@ -41,7 +41,6 @@ local lspconfig = require("lspconfig")
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
     callback = function(ev)
-        
         --https://github.com/OmniSharp/omnisharp-roslyn/issues/2483#issuecomment-1539809155
         --there sees to be some issue regarding omnisharp and nvim semantics, workaround:
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -66,12 +65,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local lpts = { buffer = ev.buf }
-        vim.keymap.set("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
+        vim.keymap.set("n", "gh", "<cmd>Lspsaga finder<CR>")
         vim.keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
         vim.keymap.set('n', 'gd', "<cmd>Lspsaga goto_definition<CR>")
         vim.keymap.set('n', 'K', "<cmd>Lspsaga hover_doc<CR>")
         vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', 'gi', "<cmd>Lspsaga finder imp<CR>", opts)
         vim.keymap.set({ 'n', 'v' }, '<leader>ca', "<cmd>Lspsaga code_action<CR>")
         vim.keymap.set('n', 'gt', "<cmd>Lspsaga goto_type_definition<CR>")
         vim.keymap.set('n', 'gr', "<cmd>Lspsaga rename<CR>")

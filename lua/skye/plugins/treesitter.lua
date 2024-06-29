@@ -13,7 +13,10 @@ require'nvim-treesitter.configs'.setup {
 	  'markdown',
 	  'markdown_inline',
 	  "php",
-      "c_sharp"
+      "c_sharp",
+      "svelte",
+      "cpp",
+      "c"
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)

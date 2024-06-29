@@ -16,7 +16,6 @@ local plugins = {
 	{
 		--find stuff
 		'nvim-telescope/telescope.nvim',
-		tag = '0.1.1',
 		dependencies = {
 			'nvim-lua/plenary.nvim',
 			{
@@ -33,7 +32,6 @@ local plugins = {
 	{
 		--file tree
 		"nvim-neo-tree/neo-tree.nvim",
-		branch = "v2.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -60,6 +58,7 @@ local plugins = {
 	'L3MON4D3/LuaSnip',
 
 	'tpope/vim-fugitive', -- git related stuff
+    'tpope/vim-surround',
 
 	'windwp/nvim-autopairs', -- autopair brackets like in vscode
 	'nvim-lualine/lualine.nvim', -- better looking status line
@@ -73,6 +72,7 @@ local plugins = {
 	},
 	'numToStr/Comment.nvim', -- easier commenting anything
 	'mbbill/undotree', -- better undo stuff
+    'windwp/nvim-ts-autotag'
 }
 
 require("lazy").setup(plugins)
