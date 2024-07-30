@@ -12,15 +12,13 @@ vim.keymap.set("n", "<leader>tp", ":tabp<CR>")     -- go to previous tab
 
 vim.keymap.set("n", "<leader>ot", "<C-w>s:te<CR>i") -- open terminal below
 
-vim.keymap.set("n", "<leader>e", ":NeoTreeShow<CR>") -- show neo tree
+vim.keymap.set("n", "<leader>e", ":Neotree toggle current reveal_force_cwd<cr>") -- show neo tree
 
 vim.keymap.set("n","<leader>u",":UndotreeToggle<CR>") --show undo tree
 
 vim.keymap.set("n","<leader>y","\"+y")
 vim.keymap.set("v","<leader>y","\"+y")
 vim.keymap.set("n","<leader>Y","\"+Y")
-
-vim.keymap.set("n","<leader>p","")
 
 vim.keymap.set('n', '<leader>ff', "<cmd>Telescope find_files<cr>")
 vim.keymap.set('n', '<leader>p', "<cmd>Telescope git_files<cr>")
