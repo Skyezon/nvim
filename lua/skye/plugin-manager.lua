@@ -72,7 +72,9 @@ local plugins = {
 	},
 	'numToStr/Comment.nvim', -- easier commenting anything
 	'mbbill/undotree', -- better undo stuff
-    'windwp/nvim-ts-autotag'
+    'windwp/nvim-ts-autotag',
+    'nvim-pack/nvim-spectre',
+    'folke/trouble.nvim'
 }
 
 require("lazy").setup(plugins)

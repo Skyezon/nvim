@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>sr", "<C-w>v")        -- split window right
-vim.keymap.set("n", "<leader>sb", "<C-w>s")        -- split window below
+vim.keymap.set("n", "<leader>sh", "<C-w>v")        -- split window right
+vim.keymap.set("n", "<leader>sv", "<C-w>s")        -- split window below
 vim.keymap.set("n", "<leader>se", "<C-w>=")        -- make split windows equal width & height
 vim.keymap.set("n", "<leader>sx", ":close<CR>")    -- close current window
 
@@ -25,3 +25,5 @@ vim.keymap.set('n', '<leader>p', "<cmd>Telescope git_files<cr>")
 vim.keymap.set('n', '<leader>fg', "<cmd>Telescope live_grep<cr>")
 vim.keymap.set('n', '<leader>fs', "<cmd>Telescope grep_string<cr>")
 vim.keymap.set('n', '<leader>fh', "<cmd>Telescope help_tags<cr>")
+
+vim.keymap.set('n', '<leader>rp', "<cmd>Spectre<cr>")
