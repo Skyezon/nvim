@@ -42,11 +42,11 @@ local plugins = {
     {
         -- lsp package manager
         "williamboman/mason.nvim",
-        build = ":MasonUpdate"        -- :MasonUpdate updates registry contents
+        build = ":MasonUpdate"           -- :MasonUpdate updates registry contents
     },
     "williamboman/mason-lspconfig.nvim", -- bridge mason with lsp
-    "neovim/nvim-lspconfig",          -- base lsp config
-    "folke/tokyonight.nvim",          -- colorscheme	
+    "neovim/nvim-lspconfig",             -- base lsp config
+    "folke/tokyonight.nvim",             -- colorscheme	
 
     -- nvim cmp stuff
     'hrsh7th/cmp-nvim-lsp',
@@ -56,10 +56,10 @@ local plugins = {
     'hrsh7th/nvim-cmp',
     'SirVer/ultisnips',
 
-    'tpope/vim-fugitive', -- git related stuff
-    'tpope/vim-surround', -- for creating brackets auto
+    'tpope/vim-fugitive',        -- git related stuff
+    'tpope/vim-surround',        -- for creating brackets auto
 
-    'windwp/nvim-autopairs',  -- autopair brackets like in vscode
+    'windwp/nvim-autopairs',     -- autopair brackets like in vscode
     'nvim-lualine/lualine.nvim', -- better looking status line
     'linrongbin16/lsp-progress.nvim',
     {
@@ -71,10 +71,11 @@ local plugins = {
 
     },
     'numToStr/Comment.nvim', -- easier commenting anything
-    'mbbill/undotree',    -- better undo stuff
+    'mbbill/undotree',       -- better undo stuff
     'windwp/nvim-ts-autotag',
     'nvim-pack/nvim-spectre',
-    'ray-x/lsp_signature.nvim'
+    'ray-x/lsp_signature.nvim',
+    'lewis6991/gitsigns.nvim'
 }
 
 require("lazy").setup(plugins)

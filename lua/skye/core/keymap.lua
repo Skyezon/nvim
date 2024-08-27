@@ -1,7 +1,5 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<leader>sh", "<C-w>v")            -- split window right
-vim.keymap.set("n", "<leader>sv", "<C-w>s")            -- split window below
 vim.keymap.set("n", "<leader>se", "<C-w>=")            -- make split windows equal width & height
 vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>")    -- close current window
 
@@ -73,3 +71,4 @@ vim.keymap.set('n', '<leader>fr', function()
 end, opts)
 
 --#endregion
+
