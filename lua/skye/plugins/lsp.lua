@@ -1,7 +1,9 @@
 local servers = {
     "lua_ls",        --lua
     "rust_analyzer", --rust
-    "eslint",        -- javascript
+    "eslint",        --old javascript
+    "biome",         --new javascript
+    "tsserver",      --typescript & javascript
     "dockerls",      --docker
     "gopls",         --go
     "pyright",       -- py
@@ -11,8 +13,8 @@ local servers = {
     "vimls",         --vim
     "svelte",        --svelte
     "intelephense",  --php
-    "omnisharp",      --c#,
-    "clangd", -- c & c++
+    "omnisharp",     --c#,
+    "clangd",        -- c & c++
 }
 
 require('mason').setup()
@@ -20,20 +22,10 @@ require("mason-lspconfig").setup {
     ensure_installed = servers
 }
 
-require("lspsaga").setup({})
+require("lspsaga").setup()
+require('lsp-progress').setup()
+require("lsp_signature").setup()
 
-vim.keymap.set('n', '<leader>d', "<cmd>Lspsaga show_line_diagnostics<CR>")
-vim.keymap.set('n', '[d', "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-vim.keymap.set('n', ']d', "<cmd>Lspsaga diagnostic_jump_next<CR>")
-vim.keymap.set('n', '<leader>D', "<cmd>Lspsaga show_workspace_diagnostics<CR>")
-
--- Diagnostic jump with filters such as only jumping to an error
-vim.keymap.set("n", "[E", function()
-    require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-end)
-vim.keymap.set("n", "]E", function()
-    require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-end)
 
 local lspconfig = require("lspconfig")
 -- Use LspAttach autocommand to only map the following keys
@@ -65,22 +57,82 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local lpts = { buffer = ev.buf }
-        vim.keymap.set("n", "gh", "<cmd>Lspsaga finder<CR>")
-        vim.keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
-        vim.keymap.set('n', 'gd', "<cmd>Lspsaga goto_definition<CR>")
-        vim.keymap.set('n', 'K', "<cmd>Lspsaga hover_doc<CR>")
-        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-        vim.keymap.set('n', 'gi', "<cmd>Lspsaga finder imp<CR>", opts)
-        vim.keymap.set({ 'n', 'v' }, '<leader>ca', "<cmd>Lspsaga code_action<CR>")
-        vim.keymap.set('n', 'gt', "<cmd>Lspsaga goto_type_definition<CR>")
-        vim.keymap.set('n', 'gr', "<cmd>Lspsaga rename<CR>")
-        vim.keymap.set('n', '<leader>fr', function()
-            vim.lsp.buf.format { async = true }
-        end, opts)
     end,
 })
 
--- cmp
+
+-- nvim-cmp setup
+local cmp = require 'cmp'
+
+cmp.setup({
+    snippet = {
+        -- REQUIRED - you must specify a snippet engine
+        expand = function(args)
+            -- vim.fn["vsnip#anonymous"](args.body)     -- For `vsnip` users.
+            --require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+            vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+            -- vim.snippet.expand(args.body) -- For native neovim snippets (Neovim v0.10+)
+        end,
+    },
+    window = {
+        -- completion = cmp.config.window.bordered(),
+        -- documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp.mapping.preset.insert({
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-e>'] = cmp.mapping.abort(),
+        ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+        { name = 'nvim_lsp' },
+        -- { name = 'vsnip' },   -- For vsnip users.
+        -- { name = 'luasnip' },   -- For luasnip users.
+        { name = 'ultisnips' }, -- For ultisnips users.
+        -- { name = 'snippy' }, -- For snippy users.
+    }, {
+        { name = 'buffer' },
+    })
+})
+
+-- To use git you need to install the plugin petertriho/cmp-git and uncomment lines below
+-- Set configuration for specific filetype.
+--[[ cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'git' },
+    }, {
+      { name = 'buffer' },
+    })
+ })
+ require("cmp_git").setup() ]] --
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = 'buffer' }
+    }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        { name = 'cmdline' }
+    }),
+    matching = { disallow_symbol_nonprefix_matching = false }
+})
+
+-- Set up lspconfig.
+-- local capabilities = require('cmp_nvim_lsp').default_capabilities()
+-- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+-- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
+--   capabilities = capabilities
+-- }
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -91,48 +143,3 @@ for _, lsp in ipairs(servers) do
         capabilities = capabilities,
     }
 end
-
--- luasnip setup
-local luasnip = require 'luasnip'
-
--- nvim-cmp setup
-local cmp = require 'cmp'
-cmp.setup {
-    snippet = {
-        expand = function(args)
-            luasnip.lsp_expand(args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert({
-        ['<C-u>'] = cmp.mapping.scroll_docs(-4), -- Up
-        ['<C-d>'] = cmp.mapping.scroll_docs(4),  -- Down
-        -- C-b (back) C-f (forward) for snippet placeholder navigation.
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<CR>'] = cmp.mapping.confirm {
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true,
-        },
-        ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_next_item()
-            elseif luasnip.expand_or_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-        ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-    }),
-    sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },
-    },
-}
