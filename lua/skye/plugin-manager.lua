@@ -73,9 +73,9 @@ local plugins = {
     'numToStr/Comment.nvim', -- easier commenting anything
     'mbbill/undotree',       -- better undo stuff
     'windwp/nvim-ts-autotag',
-    'nvim-pack/nvim-spectre',
-    'ray-x/lsp_signature.nvim',
-    'lewis6991/gitsigns.nvim'
+    'nvim-pack/nvim-spectre', -- find and replace workspace
+    'ray-x/lsp_signature.nvim', -- shows function param when typing
+    'lewis6991/gitsigns.nvim' -- signs in column and blame
 }
 
 require("lazy").setup(plugins)

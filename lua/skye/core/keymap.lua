@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 
+vim.keymap.set("n", "<leader>sh", "<C-w>s")            -- split window horizontal
+vim.keymap.set("n", "<leader>sv", "<C-w>v")            -- split windows vertical
 vim.keymap.set("n", "<leader>se", "<C-w>=")            -- make split windows equal width & height
 vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>")    -- close current window
 
@@ -22,8 +24,6 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 vim.keymap.set('n', '<leader>ff', "<cmd>Telescope find_files<cr>")
 vim.keymap.set('n', '<leader>p', "<cmd>Telescope git_files<cr>")
 vim.keymap.set('n', '<leader>fg', "<cmd>Telescope live_grep<cr>")
-vim.keymap.set('n', '<leader>fs', "<cmd>Telescope grep_string<cr>")
-vim.keymap.set('n', '<leader>fh', "<cmd>Telescope help_tags<cr>")
 
 vim.keymap.set('n', '<leader>rp', "<cmd>Spectre<cr>")
 vim.keymap.set('v', '<leader>rp', "<esc><cmd>lua require('spectre').open_visual()<CR>")
@@ -35,25 +35,11 @@ vim.keymap.set('n', '[d', "<cmd>Lspsaga diagnostic_jump_prev<CR>")
 vim.keymap.set('n', ']d', "<cmd>Lspsaga diagnostic_jump_next<CR>")
 vim.keymap.set('n', '<leader>D', "<cmd>Lspsaga show_workspace_diagnostics<CR>")
 
-vim.keymap.set('n', '<leader>d', "<cmd>Lspsaga show_line_diagnostics<CR>")
-vim.keymap.set('n', '[d', "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-vim.keymap.set('n', ']d', "<cmd>Lspsaga diagnostic_jump_next<CR>")
-vim.keymap.set('n', '<leader>D', "<cmd>Lspsaga show_workspace_diagnostics<CR>")
-
 -- Diagnostic jump with filters such as only jumping to an error
-vim.keymap.set("n", "[E", function()
+vim.keymap.set("n", "[e", function()
     require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end)
-vim.keymap.set("n", "]E", function()
-    require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-end)
-
-
--- Diagnostic jump with filters such as only jumping to an error
-vim.keymap.set("n", "[E", function()
-    require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-end)
-vim.keymap.set("n", "]E", function()
+vim.keymap.set("n", "]e", function()
     require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
 end)
 
@@ -71,4 +57,3 @@ vim.keymap.set('n', '<leader>fr', function()
 end, opts)
 
 --#endregion
-
