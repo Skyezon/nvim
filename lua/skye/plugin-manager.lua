@@ -30,16 +30,6 @@ local plugins = {
         build = ":TSUpdate"
     },
     {
-        --file tree
-        "nvim-neo-tree/neo-tree.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-            "MunifTanjim/nui.nvim",
-        }
-
-    },
-    {
         -- lsp package manager
         "williamboman/mason.nvim",
         build = ":MasonUpdate"           -- :MasonUpdate updates registry contents
@@ -70,12 +60,16 @@ local plugins = {
         }
 
     },
-    'numToStr/Comment.nvim', -- easier commenting anything
-    'mbbill/undotree',       -- better undo stuff
+    'numToStr/Comment.nvim',    -- easier commenting anything
+    'mbbill/undotree',          -- better undo stuff
     'windwp/nvim-ts-autotag',
-    'nvim-pack/nvim-spectre', -- find and replace workspace
+    'MagicDuck/grug-far.nvim',   -- find and replace workspace
     'ray-x/lsp_signature.nvim', -- shows function param when typing
-    'lewis6991/gitsigns.nvim' -- signs in column and blame
+    'lewis6991/gitsigns.nvim',  -- signs in column and blame
+    {
+        "mikavilpas/yazi.nvim",
+        events = "VeryLazy"
+    }, -- file directory
 }
 
 require("lazy").setup(plugins)

@@ -11,11 +11,12 @@ vim.keymap.set("n", "<leader>tn", "<cmd>tabn<CR>")     -- go to next tab
 vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>")     -- go to previous tab
 
 -- vim.keymap.set("n", "<leader>ot", "<C-w>s:te<CR>i")                              -- open terminal below
-vim.keymap.set("n", "<leader>ot", "<cmd>Lspsaga term_toggle<cr>")                    -- open terminal via lspsaga
+vim.keymap.set("n", "<leader>ot", "<cmd>Lspsaga term_toggle<cr>") -- open terminal via lspsaga
 
-vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle current reveal_force_cwd<cr>") -- show neo tree
+-- vim.keymap.set("n", "<leader>e", "<cmd>Neotree toggle current reveal_force_cwd<cr>") -- show neo tree
+vim.keymap.set("n", "<leader>e", "<cmd>Yazi<cr>")
 
-vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>")                          --show undo tree
+vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>") --show undo tree
 
 vim.keymap.set("n", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>y", "\"+y")
@@ -25,9 +26,8 @@ vim.keymap.set('n', '<leader>ff', "<cmd>Telescope find_files<cr>")
 vim.keymap.set('n', '<leader>p', "<cmd>Telescope git_files<cr>")
 vim.keymap.set('n', '<leader>fg', "<cmd>Telescope live_grep<cr>")
 
-vim.keymap.set('n', '<leader>rp', "<cmd>Spectre<cr>")
-vim.keymap.set('v', '<leader>rp', "<esc><cmd>lua require('spectre').open_visual()<CR>")
-
+vim.keymap.set('n', '<leader>rp', "<cmd>GrugFar<cr>")
+vim.keymap.set('v', '<leader>rp', "<esc><cmd>lua require('grug-far').with_visual_selection()<cr>")
 --#region lsp
 
 vim.keymap.set('n', '<leader>d', "<cmd>Lspsaga show_line_diagnostics<CR>")
