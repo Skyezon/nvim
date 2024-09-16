@@ -3,7 +3,7 @@ local servers = {
     "rust_analyzer", --rust
     "eslint",        --old javascript
     "biome",         --new javascript
-    "tsserver",      --typescript & javascript
+    "ts_ls",      --typescript & javascript
     "dockerls",      --docker
     "gopls",         --go
     "pyright",       -- py

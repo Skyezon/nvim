@@ -1,5 +1,5 @@
 require("yazi").setup({
-    open_for_directories = false,
+    open_for_directories = true,
     keymaps = {
         show_help = '<f1>',
         open_file_in_vertical_split = '<c-v>',

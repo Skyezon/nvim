@@ -23,7 +23,7 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 vim.keymap.set('n', '<leader>ff', "<cmd>Telescope find_files<cr>")
-vim.keymap.set('n', '<leader>p', "<cmd>Telescope git_files<cr>")
+vim.keymap.set('n', '<leader>fp', "<cmd>Telescope git_files<cr>")
 vim.keymap.set('n', '<leader>fg', "<cmd>Telescope live_grep<cr>")
 
 vim.keymap.set('n', '<leader>rp', "<cmd>GrugFar<cr>")
